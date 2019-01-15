@@ -5,7 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import com.example.yzs.customcollection.showActivity.WaveProgressActivity;
+import com.example.yzs.customcollection.showActivity.ProgressActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   @Override public void onClick(View v) {
     switch (v.getId()) {
       case R.id.btnWaveProgress:
-        startActivity(new Intent(this, WaveProgressActivity.class));
+        startActivity(new Intent(this, ProgressActivity.class));
         break;
       default:
         break;

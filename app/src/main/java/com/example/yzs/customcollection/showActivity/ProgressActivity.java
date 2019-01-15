@@ -7,11 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.yzs.customcollection.R;
-import com.example.yzs.customcollection.views.WaveView;
+import com.example.yzs.customcollection.views.CircleProgressView;
+import com.example.yzs.customcollection.views.GradientCircleProgressView;
+import com.example.yzs.customcollection.views.WaveProgressView;
 import java.text.DecimalFormat;
 
-public class WaveProgressActivity extends AppCompatActivity implements View.OnClickListener {
-  private WaveView wvProgress;
+public class ProgressActivity extends AppCompatActivity implements View.OnClickListener {
+  private WaveProgressView wvProgress;
+  private CircleProgressView cpv;
+  private GradientCircleProgressView gcpv;
   private TextView tvPercent;
   private Button btnStart;
 
@@ -27,7 +31,7 @@ public class WaveProgressActivity extends AppCompatActivity implements View.OnCl
   private void initListener() {
     btnStart.setOnClickListener(this);
 
-    wvProgress.setOnAnimationListener(new WaveView.OnAnimationListener() {
+    wvProgress.setOnAnimationListener(new WaveProgressView.OnAnimationListener() {
       @Override
       public String howToChangeText(float interpolatedTime, float updateNum, float maxNum) {
         DecimalFormat decimalFormat = new DecimalFormat("0.00");
@@ -39,20 +43,22 @@ public class WaveProgressActivity extends AppCompatActivity implements View.OnCl
 
   private void initData() {
     wvProgress.setTextView(tvPercent);
-
   }
 
   private void initViews() {
     wvProgress = findViewById(R.id.waveView);
     tvPercent = findViewById(R.id.tv_percent);
     btnStart = findViewById(R.id.btnStart);
+    cpv = findViewById(R.id.cpv);
+    gcpv = findViewById(R.id.gcpv);
   }
 
   @Override public void onClick(View v) {
     switch (v.getId()) {
       case R.id.btnStart:
-        wvProgress.setProgress(50, 1000);
-
+        wvProgress.setProgress((int) (Math.random() * 100), 1000);
+        cpv.setProgress((int) (Math.random() * 100));
+        gcpv.setProgress((int) (Math.random() * 100));
         break;
       default:
         break;

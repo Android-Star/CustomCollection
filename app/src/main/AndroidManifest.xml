@@ -19,7 +19,7 @@
       </intent-filter>
     </activity>
 
-    <activity android:name=".showActivity.WaveProgressActivity"/>
+    <activity android:name=".showActivity.ProgressActivity"/>
   </application>
 
 </manifest>

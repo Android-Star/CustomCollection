@@ -17,8 +17,9 @@ import android.view.animation.LinearInterpolator;
 import android.view.animation.Transformation;
 import android.widget.TextView;
 import com.example.yzs.customcollection.R;
+import com.example.yzs.customcollection.utils.DisplayUtils;
 
-public class WaveView extends View {
+public class WaveProgressView extends View {
   private Paint wavePaint;                              //底层波浪画笔
   private Paint secondWavePaint;                        //上层透明度的波浪画笔
   private Path wavePath;                                //波浪绘制的path
@@ -49,27 +50,30 @@ public class WaveView extends View {
 
   private boolean showSecondWave = true;               //控制是否需要绘制两层波浪
 
-  public WaveView(Context context) {
+  public WaveProgressView(Context context) {
     this(context, null);
   }
 
-  public WaveView(Context context, AttributeSet attrs) {
+  public WaveProgressView(Context context, AttributeSet attrs) {
     this(context, attrs, 0);
   }
 
-  public WaveView(Context context, AttributeSet attrs, int defStyleAttr) {
+  public WaveProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
     init(context, attrs);
   }
 
   private void init(Context context, AttributeSet attrs) {
-    TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WaveView);
-    waveColor = typedArray.getColor(R.styleable.WaveView_wave_color, Color.GREEN);
-    bgColor = typedArray.getColor(R.styleable.WaveView_bg_color, Color.GRAY);
-    secondWaveColor = typedArray.getColor(R.styleable.WaveView_second_wave_color,
+    TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.WaveProgressView);
+    waveColor = typedArray.getColor(R.styleable.WaveProgressView_wave_color, Color.GREEN);
+    bgColor = typedArray.getColor(R.styleable.WaveProgressView_bg_color, Color.LTGRAY);
+    secondWaveColor = typedArray.getColor(R.styleable.WaveProgressView_second_wave_color,
         getResources().getColor(R.color.light));
-    waveHeight = typedArray.getDimension(R.styleable.WaveView_wave_height, dp2px(context, 15));
-    waveWidth = typedArray.getDimension(R.styleable.WaveView_wave_width, dp2px(context, 50));
+    waveHeight = typedArray.getDimension(R.styleable.WaveProgressView_wave_height,
+        DisplayUtils.getInstance(context).dp2px(15));
+    waveWidth = typedArray.getDimension(R.styleable.WaveProgressView_wave_width,
+        DisplayUtils.getInstance(context).dp2px(50));
+    typedArray.recycle();
 
     wavePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     wavePaint.setColor(waveColor);
@@ -84,7 +88,7 @@ public class WaveView extends View {
 
     wavePath = new Path();
 
-    defaultSize = (int) dp2px(context, 200);
+    defaultSize = (int) DisplayUtils.getInstance(context).dp2px(200);
     waveNum = (int) (Math.ceil(defaultSize / waveWidth / 2));
 
     waveAnimation = new WaveAnimation();
@@ -165,11 +169,6 @@ public class WaveView extends View {
     return result;
   }
 
-  private float dp2px(Context context, float dpValue) {
-    float scale = context.getResources().getDisplayMetrics().density;
-    return dpValue * scale + 0.5f;
-  }
-
   public interface OnAnimationListener {
     String howToChangeText(float interpolatedTime, float updateNum, float maxNum);
   }
@@ -191,7 +190,7 @@ public class WaveView extends View {
       super.applyTransformation(interpolatedTime, t);
       if (percent < progressNum / maxNum) {
         percent = interpolatedTime * progressNum / maxNum;
-        Log.e(WaveView.class.getSimpleName(), interpolatedTime + "");
+        Log.e(WaveProgressView.class.getSimpleName(), interpolatedTime + "");
         if (onAnimationListener != null && textView != null) {
           textView.setText(
               onAnimationListener.howToChangeText(interpolatedTime, progressNum, maxNum));

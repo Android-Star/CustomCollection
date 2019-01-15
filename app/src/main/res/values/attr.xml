@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <declare-styleable name="WaveView">
+  <declare-styleable name="WaveProgressView">
     <attr name="wave_color"
         format="color"></attr>
     <attr name="bg_color"
@@ -12,5 +12,41 @@
         format="dimension"></attr>
     <attr name="wave_height"
         format="dimension"></attr>
+  </declare-styleable>
+
+  <declare-styleable name="CircleProgressView">
+    <attr name="arcColor"
+        format="color"></attr>
+    <attr name="bgColor"
+        format="color"></attr>
+    <attr name="textColor"
+        format="color"></attr>
+    <attr name="radius"
+        format="dimension"></attr>
+    <attr name="arcWidth"
+        format="dimension"></attr>
+    <attr name="textSize"
+        format="dimension"></attr>
+  </declare-styleable>
+
+  <declare-styleable name="GradientCircleProgressView">
+    <attr name="arcColor1"
+        format="color"></attr>
+    <attr name="arcBgColor"
+        format="color"></attr>
+    <attr name="textColor1"
+        format="color"></attr>
+    <attr name="radius1"
+        format="dimension"></attr>
+    <attr name="arcWidth1"
+        format="dimension"></attr>
+    <attr name="textSize1"
+        format="dimension"></attr>
+    <attr name="startColor"
+        format="color">
+    </attr>
+    <attr name="endColor"
+        format="color">
+    </attr>
   </declare-styleable>
 </resources>
