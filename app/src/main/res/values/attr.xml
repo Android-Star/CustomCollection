@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="WaveView">
+    <attr name="wave_color"
+        format="color"></attr>
+    <attr name="bg_color"
+        format="color"></attr>
+    <attr name="second_wave_color"
+        format="color"></attr>
+
+    <attr name="wave_width"
+        format="dimension"></attr>
+    <attr name="wave_height"
+        format="dimension"></attr>
+  </declare-styleable>
+</resources>
