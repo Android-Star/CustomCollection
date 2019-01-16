@@ -8,4 +8,6 @@
 
 
   <color name="light">#33D81B60</color>
+  <color name="radarStartColor">#8800ff00</color>
+
 </resources>

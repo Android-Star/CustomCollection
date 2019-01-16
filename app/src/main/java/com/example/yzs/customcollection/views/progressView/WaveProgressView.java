@@ -1,4 +1,4 @@
-package com.example.yzs.customcollection.views;
+package com.example.yzs.customcollection.views.progressView;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -24,7 +24,7 @@
       android:layout_marginTop="20dp"
       android:layout_height="wrap_content"
       >
-    <com.example.yzs.customcollection.views.WaveProgressView
+    <com.example.yzs.customcollection.views.progressView.WaveProgressView
         android:id="@+id/waveView"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -43,7 +43,7 @@
         />
   </RelativeLayout>
 
-  <com.example.yzs.customcollection.views.CircleProgressView
+  <com.example.yzs.customcollection.views.progressView.CircleProgressView
       android:id="@+id/cpv"
       app:layout_constraintTop_toBottomOf="@id/rl_wave"
       app:layout_constraintLeft_toLeftOf="parent"
@@ -58,7 +58,7 @@
       app:textColor="@android:color/black"
       />
 
-  <com.example.yzs.customcollection.views.GradientCircleProgressView
+  <com.example.yzs.customcollection.views.progressView.GradientCircleProgressView
       android:id="@+id/gcpv"
       app:layout_constraintTop_toBottomOf="@id/cpv"
       app:layout_constraintLeft_toLeftOf="parent"

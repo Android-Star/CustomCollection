@@ -49,4 +49,21 @@
         format="color">
     </attr>
   </declare-styleable>
+
+  <declare-styleable name="RadarScanView">
+    <attr name="radarBgColor"
+        format="color"></attr>
+    <attr name="defaultColor"
+        format="color"></attr>
+    <attr name="pointColor"
+        format="color"></attr>
+    <attr name="gradientStartColor"
+        format="color"></attr>
+    <attr name="gradientStopColor"
+        format="color"></attr>
+    <attr name="lineWidth"
+        format="dimension"/>
+    <attr name="pointNum"
+        format="integer"></attr>
+  </declare-styleable>
 </resources>

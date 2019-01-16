@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import com.example.yzs.customcollection.R;
-import com.example.yzs.customcollection.views.CircleProgressView;
-import com.example.yzs.customcollection.views.GradientCircleProgressView;
-import com.example.yzs.customcollection.views.WaveProgressView;
+import com.example.yzs.customcollection.views.progressView.CircleProgressView;
+import com.example.yzs.customcollection.views.progressView.GradientCircleProgressView;
+import com.example.yzs.customcollection.views.progressView.WaveProgressView;
 import java.text.DecimalFormat;
 
 public class ProgressActivity extends AppCompatActivity implements View.OnClickListener {

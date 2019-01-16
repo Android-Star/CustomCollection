@@ -1,4 +1,4 @@
-package com.example.yzs.customcollection.views;
+package com.example.yzs.customcollection.views.progressView;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.SweepGradient;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
@@ -15,16 +16,18 @@ import com.example.yzs.customcollection.R;
 import com.example.yzs.customcollection.utils.DisplayUtils;
 import java.text.DecimalFormat;
 
-public class CircleProgressView extends View {
+public class GradientCircleProgressView extends View {
 
   private Paint mArcPaint;                            //环形的画笔
-  private Paint bgPaint;                              //背景颜色的画笔
+  private Paint arcBgPaint;                              //背景颜色的画笔
   private Paint mTextPaint;                           //文本的画笔
 
   private int arcColor;                               //环形颜色
-  private int bgColor;                                //背景颜色
+  private int arcBgColor;                             //背景颜色
   private int textColor;                              //文本颜色
   private int textSize;                               //文本的字体大小
+  private int startColor;
+  private int endColor;
 
   private int radius;                                 //背景园的半径
   private int arcWidth;                               //环形的宽度
@@ -41,31 +44,39 @@ public class CircleProgressView extends View {
 
   private ValueAnimator valueAnimator;                //控制进度增长的动画
 
-  public CircleProgressView(Context context) {
+  private Paint startPaint;                           //消除渐变开头的半圆
+
+  public GradientCircleProgressView(Context context) {
     this(context, null);
   }
 
-  public CircleProgressView(Context context, AttributeSet attrs) {
+  public GradientCircleProgressView(Context context, AttributeSet attrs) {
     this(context, attrs, 0);
   }
 
-  public CircleProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
+  public GradientCircleProgressView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
 
     init(context, attrs);
   }
 
   private void init(Context context, AttributeSet attrs) {
-    TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressView);
-    arcColor = typedArray.getColor(R.styleable.CircleProgressView_arcColor, Color.YELLOW);
-    bgColor = typedArray.getColor(R.styleable.CircleProgressView_bgColor, Color.LTGRAY);
-    textColor = typedArray.getColor(R.styleable.CircleProgressView_textColor, Color.BLACK);
-    radius = (int) typedArray.getDimension(R.styleable.CircleProgressView_radius,
+    TypedArray typedArray =
+        context.obtainStyledAttributes(attrs, R.styleable.GradientCircleProgressView);
+    arcColor = typedArray.getColor(R.styleable.GradientCircleProgressView_arcColor1, Color.YELLOW);
+    arcBgColor =
+        typedArray.getColor(R.styleable.GradientCircleProgressView_arcBgColor, Color.LTGRAY);
+    textColor = typedArray.getColor(R.styleable.GradientCircleProgressView_textColor1, Color.BLACK);
+    radius = (int) typedArray.getDimension(R.styleable.GradientCircleProgressView_radius1,
         DisplayUtils.getInstance(context).dp2px(80));
-    arcWidth = (int) typedArray.getDimension(R.styleable.CircleProgressView_arcWidth,
+    arcWidth = (int) typedArray.getDimension(R.styleable.GradientCircleProgressView_arcWidth1,
         DisplayUtils.getInstance(context).dp2px(10));
-    textSize = (int) typedArray.getDimension(R.styleable.CircleProgressView_textSize,
+    textSize = (int) typedArray.getDimension(R.styleable.GradientCircleProgressView_textSize1,
         DisplayUtils.getInstance(context).dp2px(20));
+    typedArray.recycle();
+    startColor =
+        typedArray.getColor(R.styleable.GradientCircleProgressView_startColor, Color.GREEN);
+    endColor = typedArray.getColor(R.styleable.GradientCircleProgressView_endColor, Color.YELLOW);
     typedArray.recycle();
 
     mArcPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -74,13 +85,18 @@ public class CircleProgressView extends View {
     mArcPaint.setStrokeWidth(arcWidth);
     mArcPaint.setStrokeCap(Paint.Cap.ROUND);
 
-    bgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-    bgPaint.setColor(bgColor);
+    arcBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    arcBgPaint.setColor(arcBgColor);
+    arcBgPaint.setStyle(Paint.Style.STROKE);
+    arcBgPaint.setStrokeWidth(arcWidth);
 
     mTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     mTextPaint.setColor(textColor);
     mTextPaint.setTextSize(textSize);
     mTextPaint.setTypeface(Typeface.DEFAULT_BOLD);
+
+    startPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    startPaint.setColor(startColor);
 
     defaultSize = (int) DisplayUtils.getInstance(context).dp2px(160);
     textRect = new Rect();
@@ -89,14 +105,25 @@ public class CircleProgressView extends View {
   }
 
   @Override protected void onDraw(Canvas canvas) {
-    canvas.drawCircle(getWidth() / 2, getHeight() / 2, radius, bgPaint);
     arcRect =
         new RectF(getWidth() / 2 - radius + arcWidth / 2, getHeight() / 2 - radius + arcWidth / 2,
             getWidth() / 2 + radius - arcWidth / 2, getHeight() / 2 + radius - arcWidth / 2);
 
+    //绘制背景灰色环形
+    canvas.drawArc(arcRect, 0, 360, false, arcBgPaint);
+    //给圆环的画笔设置渐变
+    mArcPaint.setShader(new SweepGradient(getWidth() / 2, getHeight() / 2, startColor, endColor));
+
+    //绘制环形区域
     canvas.rotate(-90, getWidth() / 2, getHeight() / 2);
     canvas.drawArc(arcRect, 0, currentPercent * 360, false, mArcPaint);
     canvas.rotate(90, getWidth() / 2, getHeight() / 2);
+    //判断如果进度大于0就消除开头的半圆
+    if (currentPercent > 0) {
+      canvas.drawCircle(getWidth() / 2, arcWidth / 2, arcWidth / 2, startPaint);
+    }
+
+    //绘制文本
     String text = decimalFormat.format(currentPercent * 100) + "%";
     mTextPaint.getTextBounds(text, 0, text.length(), textRect);
 

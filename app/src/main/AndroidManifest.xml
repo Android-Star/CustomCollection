@@ -20,6 +20,7 @@
     </activity>
 
     <activity android:name=".showActivity.ProgressActivity"/>
+    <activity android:name=".showActivity.ScanActivity"/>
   </application>
 
 </manifest>
