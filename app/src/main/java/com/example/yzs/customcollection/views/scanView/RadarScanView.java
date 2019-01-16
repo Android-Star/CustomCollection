@@ -16,31 +16,31 @@ import com.example.yzs.customcollection.R;
 import com.example.yzs.customcollection.utils.DisplayUtils;
 
 public class RadarScanView extends View {
-  private static final int DEFAULT_LINE_WIDTH = 5;
-  private static final int DEFAULT_POINT_NUM = 10;
-  private static final int DEFAULT_VIEW_SIZE = 200;
-  private Paint bgPaint;
-  private Paint pointPaint;
-  private Paint defaultPaint;
-  private Paint gradientPaint;
+  private static final int DEFAULT_LINE_WIDTH = 5;            //默认线条宽度
+  private static final int DEFAULT_POINT_NUM = 10;            //扫描结果点的数量
+  private static final int DEFAULT_VIEW_SIZE = 200;           //默认控件宽高dp
+  private Paint bgPaint;                                      //背景画笔
+  private Paint pointPaint;                                   //扫描结果点画笔
+  private Paint defaultPaint;                                 //线条画笔
+  private Paint gradientPaint;                                //渐变画笔
 
-  private int radarBgColor;
-  private int defaultColor;
-  private int pointColor;
-  private int gradientStartColor;
-  private int gradientStopColor;
+  private int radarBgColor;                                   //背景颜色
+  private int defaultColor;                                   //线条颜色
+  private int pointColor;                                     //扫描点颜色
+  private int gradientStartColor;                             //渐变开始颜色
+  private int gradientStopColor;                              //渐变结束颜色
 
-  private int lineWidth;
-  private int pointNum;
+  private int lineWidth;                                      //线条宽度
+  private int pointNum;                                       //点的数量
 
-  private int defaultSize;
-  private int viewSize;
+  private int defaultSize;                                    //默认控件大小px
+  private int viewSize;                                       //控件真实大小
 
-  private float currentAngle;
-  private ScanAnimation scanAnimation;
-  private boolean needGetPoint = true;
-  private float[] currentPoints;
-  private boolean cancelAnimation = false;
+  private float currentAngle;                                 //当前旋转角度
+  private ScanAnimation scanAnimation;                        //扫描的动画
+  private boolean needGetPoint = true;                        //是否需要重新获取随机点
+  private float[] currentPoints;                              //本次扫描使用的随机点
+  private boolean cancelAnimation = false;                    //是否停止了动画
 
   public RadarScanView(Context context) {
     this(context, null);

@@ -25,10 +25,20 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Scan Demo"
-      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/btnClock"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@id/btnProgress"
+      />
+  <Button
+      android:id="@+id/btnClock"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Clock Demo"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/btnScan"
       />
 
 </android.support.constraint.ConstraintLayout>

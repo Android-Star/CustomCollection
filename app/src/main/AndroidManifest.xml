@@ -21,6 +21,7 @@
 
     <activity android:name=".showActivity.ProgressActivity"/>
     <activity android:name=".showActivity.ScanActivity"/>
+    <activity android:name=".showActivity.ClockActivity"/>
   </application>
 
 </manifest>
