@@ -22,6 +22,8 @@
     <activity android:name=".showActivity.ProgressActivity"/>
     <activity android:name=".showActivity.ScanActivity"/>
     <activity android:name=".showActivity.ClockActivity"/>
+    <activity android:name=".showActivity.WaveViewActivity"/>
+    <activity android:name=".showActivity.DashBoardActivity"/>
   </application>
 
 </manifest>
