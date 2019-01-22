@@ -14,42 +14,41 @@ import android.view.animation.Transformation;
 import com.example.yzs.customcollection.R;
 
 public class ChengyuSeekBar extends View {
-  private static final int DEFAULT_VIEW_HEIGHT = 28;          //默认高度
-  private static final int DEFAULT_VIEW_WIDTH = 739;          //默认宽度
-  private static final int DEFAULT_BOTH_OFFSET = 2;           //处理计算中的误差
+  private static final int DEFAULT_VIEW_HEIGHT = 28;
+  private static final int DEFAULT_VIEW_WIDTH = 739;
+  private static final int DEFAULT_BOTH_OFFSET = 2;
   private Paint mPaint;
 
-  private int realHeight;                                     //真实高度
-  private int realWidth;                                      //真实宽度
+  private int realHeight;
+  private int realWidth;
 
-  private int maxPoints;                                      //点的总个数
-  private float everyLength;                                  //每一段的长度
+  private int maxPoints;
+  private float everyLength;
 
-  private float circleX;                                      //绘制每个点时候每个点的圆心横坐标
+  private float circleX;
   private Rect textBounds;
 
-  private int currentStep;                                    //当前步数（及当前所绘制到的点）
+  private int currentStep;
 
-  private float percent;                                      //控制动画的百分比
-  private float completeCircleRadius;                         //
-  private float smallDotRadius;                               //内部小红点半径
-  private int cyTextSize;                                     //数字字体大小
+  private float percent;
+  private float completeCircleRadius;
+  private float smallDotRadius;
+  private int cyTextSize;
 
-  private int normalBgColor;                                  //未完成背景颜色
-  private int completeBgColor;                                //已完成部分背景颜色
-  private int normalTextColor;                                //未完成数字颜色
-  private int completeTextColor;                              //已完成数字颜色
+  private int normalBgColor;
+  private int completeBgColor;
+  private int normalTextColor;
+  private int completeTextColor;
 
-  private SeekAnimation seekAnimation;                        //控制进度和完成的动画
+  private SeekAnimation seekAnimation;
 
   private enum StepStatus {
-    STATUS_ING,                                               //区分是当前点正在进行
-    STEP_COMPLETE                                             //区分是当前点已完成
+    STATUS_ING, STEP_COMPLETE
   }
 
-  private StepStatus stepStatus;                              //标志当前动画状态
+  private StepStatus stepStatus;
 
-  private boolean isAdd;                                      //是否是增长进度
+  private boolean isAdd;
 
   public ChengyuSeekBar(Context context) {
     this(context, null);
@@ -91,33 +90,59 @@ public class ChengyuSeekBar extends View {
 
   @Override protected void onDraw(Canvas canvas) {
     Log.d(ChengyuSeekBar.class.getSimpleName(), percent + "-------------");
+    //绘制背景矩形
     if (isAdd) {
-      mPaint.setColor(completeBgColor);
-      canvas.drawRect(0, getHeight() / 4f,
-          (everyLength * (currentStep - 1)) + everyLength * percent, getHeight() / 4 * 3f, mPaint);
-
       mPaint.setColor(normalBgColor);
-      canvas.drawRect(
-          (everyLength * (currentStep - 1)) + everyLength * percent - DEFAULT_BOTH_OFFSET,
-          getHeight() / 4f, getWidth() - DEFAULT_BOTH_OFFSET, getHeight() / 4 * 3f, mPaint);
-    } else {
-      mPaint.setColor(completeBgColor);
-      canvas.drawRect(DEFAULT_BOTH_OFFSET, getHeight() / 4f,
-          everyLength * (currentStep - 1) - getHeight() / 2f + DEFAULT_BOTH_OFFSET,
+      canvas.drawRect(completeCircleRadius, getHeight() / 4f, getWidth() - DEFAULT_BOTH_OFFSET,
           getHeight() / 4 * 3f, mPaint);
-
+    } else {
       mPaint.setColor(normalBgColor);
       canvas.drawRect(everyLength * (currentStep - 1) + getHeight() / 2f - DEFAULT_BOTH_OFFSET,
           getHeight() / 4f, getWidth() - DEFAULT_BOTH_OFFSET, getHeight() / 4 * 3f, mPaint);
     }
-
+    //绘制大圆圈点
     for (int i = 1; i <= maxPoints; i++) {
       if (i == 1) {
         circleX = getHeight() / 2f;
       } else if (i == maxPoints) {
         circleX = everyLength * (i - 1) - getHeight() / 2f + DEFAULT_BOTH_OFFSET;
       } else {
-
+        circleX = everyLength * (i - 1);
+      }
+      if (i < currentStep) {
+        mPaint.setColor(completeBgColor);
+        canvas.drawCircle(circleX, getHeight() / 2f, getHeight() / 2f, mPaint);
+      } else if (i == currentStep) {
+        mPaint.setColor(normalBgColor);
+        canvas.drawCircle(circleX, getHeight() / 2f, getHeight() / 2f, mPaint);
+        mPaint.setColor(completeBgColor);
+        if (stepStatus == StepStatus.STATUS_ING && isAdd) {
+          canvas.drawCircle(circleX, getHeight() / 2f, getHeight() / 2f, mPaint);
+        }
+      } else {
+        mPaint.setColor(normalBgColor);
+        canvas.drawCircle(circleX, getHeight() / 2f, getHeight() / 2f, mPaint);
+      }
+    }
+    //绘制完成矩形和完成圆圈
+    if (isAdd) {
+      mPaint.setColor(completeBgColor);
+      canvas.drawRect(completeCircleRadius, getHeight() / 4f,
+          (everyLength * (currentStep - 1)) + completeCircleRadius + everyLength * percent,
+          getHeight() / 4 * 3f, mPaint);
+    } else {
+      mPaint.setColor(completeBgColor);
+      canvas.drawRect(DEFAULT_BOTH_OFFSET, getHeight() / 4f,
+          everyLength * (currentStep - 1) - getHeight() / 2f + DEFAULT_BOTH_OFFSET + 5,
+          getHeight() / 4 * 3f, mPaint);
+    }
+    //绘制数字
+    for (int i = 1; i <= maxPoints; i++) {
+      if (i == 1) {
+        circleX = getHeight() / 2f;
+      } else if (i == maxPoints) {
+        circleX = everyLength * (i - 1) - getHeight() / 2f + DEFAULT_BOTH_OFFSET;
+      } else {
         circleX = everyLength * (i - 1);
       }
 
@@ -125,22 +150,13 @@ public class ChengyuSeekBar extends View {
       mPaint.getTextBounds(text, 0, text.length(), textBounds);
 
       if (i < currentStep) {
-        mPaint.setColor(completeBgColor);
-        canvas.drawCircle(circleX, getHeight() / 2f, getHeight() / 2f, mPaint);
-
         mPaint.setColor(completeTextColor);
         canvas.drawText(text, 0, text.length(), circleX - textBounds.width() / 2f,
             getHeight() / 2f + textBounds.height() / 2f, mPaint);
       } else if (i == currentStep) {
-        mPaint.setColor(normalBgColor);
-        canvas.drawCircle(circleX, getHeight() / 2f, getHeight() / 2f, mPaint);
-
         mPaint.setColor(completeBgColor);
         if (stepStatus == StepStatus.STATUS_ING) {
-          //canvas.drawCircle(circleX, getHeight() / 2f, completeCircleRadius, mPaint);
-
           if (isAdd) {
-            canvas.drawCircle(circleX, getHeight() / 2f, getHeight() / 2f, mPaint);
             mPaint.setColor(completeTextColor);
             canvas.drawText(text, 0, text.length(), circleX - textBounds.width() / 2f,
                 getHeight() / 2f + textBounds.height() / 2f, mPaint);
@@ -151,15 +167,11 @@ public class ChengyuSeekBar extends View {
           }
         } else if (stepStatus == StepStatus.STEP_COMPLETE) {
           canvas.drawCircle(circleX, getHeight() / 2f, (getHeight() / 2f) * percent, mPaint);
-
           mPaint.setColor(completeTextColor);
           canvas.drawText(text, 0, text.length(), circleX - textBounds.width() / 2f,
               getHeight() / 2f + textBounds.height() / 2f, mPaint);
         }
       } else {
-        mPaint.setColor(normalBgColor);
-        canvas.drawCircle(circleX, getHeight() / 2f, getHeight() / 2f, mPaint);
-
         mPaint.setColor(normalTextColor);
         canvas.drawText(text, 0, text.length(), circleX - textBounds.width() / 2f,
             getHeight() / 2f + textBounds.height() / 2f, mPaint);
