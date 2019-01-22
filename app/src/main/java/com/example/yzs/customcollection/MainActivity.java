@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import com.example.yzs.customcollection.showActivity.ButtonActivity;
 import com.example.yzs.customcollection.showActivity.ClockActivity;
 import com.example.yzs.customcollection.showActivity.DashBoardActivity;
 import com.example.yzs.customcollection.showActivity.ProgressActivity;
 import com.example.yzs.customcollection.showActivity.ScanActivity;
+import com.example.yzs.customcollection.showActivity.SeekBarActivity;
 import com.example.yzs.customcollection.showActivity.WaveViewActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -18,6 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   private Button btnClock;
   private Button btnWaveView;
   private Button btnDashBoard;
+  private Button btnSeedBar;
+  private Button btnButton;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     btnClock.setOnClickListener(this);
     btnWaveView.setOnClickListener(this);
     btnDashBoard.setOnClickListener(this);
+    btnSeedBar.setOnClickListener(this);
+    btnButton.setOnClickListener(this);
   }
 
   private void initViews() {
@@ -40,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     btnClock = findViewById(R.id.btnClock);
     btnWaveView = findViewById(R.id.btnWaveView);
     btnDashBoard = findViewById(R.id.btnDashBoard);
+    btnSeedBar = findViewById(R.id.btnSeekBar);
+    btnButton = findViewById(R.id.btnButton);
   }
 
   @Override public void onClick(View v) {
@@ -58,6 +66,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         break;
       case R.id.btnDashBoard:
         startActivity(new Intent(this, DashBoardActivity.class));
+        break;
+      case R.id.btnSeekBar:
+        startActivity(new Intent(this, SeekBarActivity.class));
+        break;
+      case R.id.btnButton:
+        startActivity(new Intent(this, ButtonActivity.class));
         break;
       default:
         break;

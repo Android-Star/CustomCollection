@@ -55,10 +55,31 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="DashBoard Demo"
-      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/btnSeekBar"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@id/btnWaveView"
+      />
+  <Button
+      android:id="@+id/btnSeekBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="SeekBar Demo"
+      app:layout_constraintBottom_toTopOf="@id/btnButton"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/btnDashBoard"
+      />
+
+  <Button
+      android:id="@+id/btnButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Button Demo"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/btnSeekBar"
       />
 
 </android.support.constraint.ConstraintLayout>

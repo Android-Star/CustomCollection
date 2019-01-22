@@ -66,4 +66,31 @@
     <attr name="pointNum"
         format="integer"></attr>
   </declare-styleable>
+
+  <declare-styleable name="ChengyuSeekBar">
+    <attr name="normalBgColor"
+        format="color"></attr>
+    <attr name="completeBgColor"
+        format="color"></attr>
+    <attr name="normalTextColor"
+        format="color"></attr>
+    <attr name="completeTextColor"
+        format="color"></attr>
+
+  </declare-styleable>
+
+  <declare-styleable name="RecordButtonView">
+    <attr name="bigCircleColor"
+        format="color"/>
+    <attr name="smallCircleColor"
+        format="color"/>
+    <attr name="smallRadius"
+        format="dimension"/>
+    <attr name="imgId"
+        format="reference"/>
+    <attr name="startAlpha"
+        format="float"/>
+    <attr name="endAlpha"
+        format="float"/>
+  </declare-styleable>
 </resources>

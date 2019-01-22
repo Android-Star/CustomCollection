@@ -24,6 +24,8 @@
     <activity android:name=".showActivity.ClockActivity"/>
     <activity android:name=".showActivity.WaveViewActivity"/>
     <activity android:name=".showActivity.DashBoardActivity"/>
+    <activity android:name=".showActivity.SeekBarActivity"/>
+    <activity android:name=".showActivity.ButtonActivity"/>
   </application>
 
 </manifest>

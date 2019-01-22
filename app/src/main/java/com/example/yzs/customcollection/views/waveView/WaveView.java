@@ -67,10 +67,8 @@ public class WaveView extends View {
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-    int height = customMeasure(defaultHeight, heightMeasureSpec);
-    int width = customMeasure(defaultWidth, widthMeasureSpec);
-    viewHeight = Math.min(height, defaultHeight);
-    viewWidth = Math.min(width, defaultWidth);
+    viewHeight = customMeasure(defaultHeight, heightMeasureSpec);
+    viewWidth = customMeasure(defaultWidth, widthMeasureSpec);
     waveNum = (int) Math.ceil(viewHeight / waveWidth);
     setMeasuredDimension(viewWidth, viewHeight);
   }

@@ -9,5 +9,10 @@
 
   <color name="light">#33D81B60</color>
   <color name="radarStartColor">#8800ff00</color>
+  <color name="chengyu_seekbar_normal_bgcolor">#04977d</color>
+  <color name="chengyu_seekbar_complete_bgcolor">#ffdb42</color>
+  <color name="chengyu_seekbar_normal_textcolor">#005b4c</color>
+  <color name="chengyu_seekbar_complete_textcolor">#f96922</color>
+  <color name="chengyu_record_bg">#008870</color>
 
 </resources>
