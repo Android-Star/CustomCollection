@@ -76,10 +76,20 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:text="Button Demo"
-      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/cleanButton"
       app:layout_constraintLeft_toLeftOf="parent"
       app:layout_constraintRight_toRightOf="parent"
       app:layout_constraintTop_toBottomOf="@id/btnSeekBar"
+      />
+  <Button
+      android:id="@+id/cleanButton"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="clean Demo"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintLeft_toLeftOf="parent"
+      app:layout_constraintRight_toRightOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/btnButton"
       />
 
 </android.support.constraint.ConstraintLayout>

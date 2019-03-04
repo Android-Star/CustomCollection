@@ -26,6 +26,7 @@
     <activity android:name=".showActivity.DashBoardActivity"/>
     <activity android:name=".showActivity.SeekBarActivity"/>
     <activity android:name=".showActivity.ButtonActivity"/>
+    <activity android:name=".showActivity.Clean360Activity"/>
   </application>
 
 </manifest>
