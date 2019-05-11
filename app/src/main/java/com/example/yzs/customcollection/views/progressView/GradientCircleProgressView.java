@@ -73,7 +73,6 @@ public class GradientCircleProgressView extends View {
         DisplayUtils.getInstance(context).dp2px(10));
     textSize = (int) typedArray.getDimension(R.styleable.GradientCircleProgressView_textSize1,
         DisplayUtils.getInstance(context).dp2px(20));
-    typedArray.recycle();
     startColor =
         typedArray.getColor(R.styleable.GradientCircleProgressView_startColor, Color.GREEN);
     endColor = typedArray.getColor(R.styleable.GradientCircleProgressView_endColor, Color.YELLOW);

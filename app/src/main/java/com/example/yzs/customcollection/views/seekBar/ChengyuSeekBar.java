@@ -74,6 +74,8 @@ public class ChengyuSeekBar extends View {
         getResources().getColor(R.color.chengyu_seekbar_normal_textcolor));
     completeTextColor = typedArray.getColor(R.styleable.ChengyuSeekBar_completeTextColor,
         getResources().getColor(R.color.chengyu_seekbar_complete_textcolor));
+
+    typedArray.recycle();
   }
 
   private void init() {
@@ -217,14 +219,14 @@ public class ChengyuSeekBar extends View {
         break;
     }
     return result;
-  }
+    }
 
-  private class SeekAnimation extends Animation {
-    @Override protected void applyTransformation(float interpolatedTime, Transformation t) {
-      super.applyTransformation(interpolatedTime, t);
-      percent = interpolatedTime;
-      Log.d(ChengyuSeekBar.class.getSimpleName(), percent + "" + isAdd);
-      invalidate();
+    private class SeekAnimation extends Animation {
+      @Override protected void applyTransformation(float interpolatedTime, Transformation t) {
+        super.applyTransformation(interpolatedTime, t);
+        percent = interpolatedTime;
+        Log.d(ChengyuSeekBar.class.getSimpleName(), percent + "" + isAdd);
+        invalidate();
     }
   }
 

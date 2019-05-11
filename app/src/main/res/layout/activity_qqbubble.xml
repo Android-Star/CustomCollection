@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <com.example.yzs.customcollection.views.bezier.QQBezierView
+        android:layout_width="match_parent"
+        android:background="@color/light"
+        android:id="@+id/qqBerzierView"
+        android:layout_height="0dp"
+        app:bubbleColor="@color/colorAccent"
+        app:bubbleTxt="12"
+        app:bubbleRadius="12dp"
+        app:bubbleTxtColor="@android:color/white"
+        app:bubbleTxtSize="12sp"
+        android:layout_weight="1"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:background="@color/colorPrimary"
+        android:layout_height="wrap_content"
+        android:paddingVertical="10dp"
+        android:onClick="onClick"
+        android:text="reset"/>
+
+</LinearLayout>

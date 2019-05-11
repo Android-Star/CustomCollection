@@ -93,4 +93,12 @@
     <attr name="endAlpha"
         format="float"/>
   </declare-styleable>
+
+  <declare-styleable name="QQBezierView">
+    <attr name="bubbleTxtColor" format="color"/>
+    <attr name="bubbleColor" format="color"/>
+    <attr name="bubbleTxtSize" format="dimension"/>
+    <attr name="bubbleRadius" format="dimension"/>
+    <attr name="bubbleTxt" format="string|reference"/>
+  </declare-styleable>
 </resources>
