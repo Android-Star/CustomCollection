@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="240dp"
+      android:layout_alignParentBottom="true"
+      android:layout_marginBottom="111dp"
+      android:orientation="vertical"
+      tools:ignore="MissingConstraints"
+      >
+    <com.example.yzs.customcollection.views.roadWheel.HomeRoadView
+        android:id="@+id/llRoad"
+        android:layout_width="match_parent"
+        android:clickable="true"
+        android:layout_height="190dp"
+        android:orientation="vertical"
+        android:background="@mipmap/road"
+        >
+    </com.example.yzs.customcollection.views.roadWheel.HomeRoadView>
+    <com.example.yzs.customcollection.views.roadWheel.HomeWheelView
+        android:id="@+id/homeWheelView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
+        android:background="@mipmap/road_side"
+        >
+    </com.example.yzs.customcollection.views.roadWheel.HomeWheelView>
+  </LinearLayout>
+</android.support.constraint.ConstraintLayout>

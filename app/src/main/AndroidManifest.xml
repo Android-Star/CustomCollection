@@ -3,8 +3,13 @@
     package="com.example.yzs.customcollection"
     >
 
+  <uses-permission android:name="android.permission.INTERNET"/>
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
   <application
       android:allowBackup="true"
+      android:name=".MyApplication"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
       android:roundIcon="@mipmap/ic_launcher_round"
@@ -22,12 +27,18 @@
     <activity android:name=".showActivity.ProgressActivity"/>
     <activity android:name=".showActivity.ScanActivity"/>
     <activity android:name=".showActivity.ClockActivity"/>
-    <activity android:name=".showActivity.WaveViewActivity"/>
+    <activity android:name=".showActivity.BannerViewActivity"/>
     <activity android:name=".showActivity.DashBoardActivity"/>
     <activity android:name=".showActivity.SeekBarActivity"/>
     <activity android:name=".showActivity.ButtonActivity"/>
     <activity android:name=".showActivity.Clean360Activity"/>
     <activity android:name=".showActivity.QQBezierActivity"/>
+    <activity android:name=".showActivity.NetWorkActivity"/>
+    <activity android:name=".network.okhttp.OkhttpActivity"/>
+    <activity android:name=".network.retrofit.RetrofitActivity"/>
+    <activity android:name=".network.volley.VolleyJsonActivity"/>
+    <activity android:name=".network.volley.VolleyStringActivity"/>
+    <activity android:name=".showActivity.RoadWheelActivity"/>
   </application>
 
 </manifest>

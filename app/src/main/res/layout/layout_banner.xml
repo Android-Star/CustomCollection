@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+  <com.example.yzs.customcollection.views.banner.CustomBanner
+      android:id="@+id/banner"
+      android:layout_width="match_parent"
+      android:layout_height="200dp"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+      <ImageView
+          android:clickable="true"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@mipmap/banner1"
+          />
+      <ImageView
+          android:clickable="true"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@mipmap/banner2"
+          />
+      <ImageView
+          android:clickable="true"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@mipmap/banner3"
+          />
+      <ImageView
+          android:clickable="true"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:background="@mipmap/banner4"
+          />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="10dp"
+        ></LinearLayout>
+
+  </com.example.yzs.customcollection.views.banner.CustomBanner>
+</LinearLayout>
