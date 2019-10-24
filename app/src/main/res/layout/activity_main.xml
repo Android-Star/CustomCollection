@@ -1,125 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    >
+    tools:context=".MainActivity">
 
-  <Button
-      android:id="@+id/btnProgress"
-      app:layout_constraintVertical_chainStyle="packed"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="圆形进度条 Demo"
-      app:layout_constraintBottom_toTopOf="@id/btnScan"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      />
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-  <Button
-      android:id="@+id/btnScan"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="扫描 Demo"
-      app:layout_constraintBottom_toTopOf="@id/btnClock"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/btnProgress"
-      />
-  <Button
-      android:id="@+id/btnClock"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="时钟 Demo"
-      app:layout_constraintBottom_toTopOf="@id/btnBannerView"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/btnScan"
-      />
-  <Button
-      android:id="@+id/btnBannerView"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Banner Demo"
-      app:layout_constraintBottom_toTopOf="@id/btnDashBoard"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/btnClock"
-      />
-  <Button
-      android:id="@+id/btnDashBoard"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="仪表盘 Demo"
-      app:layout_constraintBottom_toTopOf="@id/btnSeekBar"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/btnBannerView"
-      />
-  <Button
-      android:id="@+id/btnSeekBar"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="关卡进度 Demo"
-      app:layout_constraintBottom_toTopOf="@id/btnButton"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/btnDashBoard"
-      />
+        <Button
+            android:id="@+id/btnProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="圆形进度条 Demo"
+            app:layout_constraintBottom_toTopOf="@id/btnScan"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-  <Button
-      android:id="@+id/btnButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="气泡按钮 Demo"
-      app:layout_constraintBottom_toTopOf="@id/cleanButton"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/btnSeekBar"
-      />
-  <Button
-      android:id="@+id/cleanButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="360 Demo"
-      app:layout_constraintBottom_toTopOf="@id/qqBubble"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/btnButton"
-      />
-  <Button
-      android:id="@+id/qqBubble"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="QQ气泡 Demo"
-      app:layout_constraintBottom_toTopOf="@id/networkButton"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/cleanButton"
-      />
-  <Button
-      android:id="@+id/networkButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="网络 Demo"
-      app:layout_constraintBottom_toTopOf="@id/roadWheelButton"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/qqBubble"
-      />
-  <Button
-      android:id="@+id/roadWheelButton"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="火车路 Demo"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/networkButton"
-      />
+        <Button
+            android:id="@+id/btnScan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="扫描 Demo"
+            app:layout_constraintBottom_toTopOf="@id/btnClock"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnProgress" />
 
-</android.support.constraint.ConstraintLayout>
+        <Button
+            android:id="@+id/btnClock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="时钟 Demo"
+            app:layout_constraintBottom_toTopOf="@id/btnBannerView"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnScan" />
+
+        <Button
+            android:id="@+id/btnBannerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Banner Demo"
+            app:layout_constraintBottom_toTopOf="@id/btnDashBoard"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnClock" />
+
+        <Button
+            android:id="@+id/btnDashBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="仪表盘 Demo"
+            app:layout_constraintBottom_toTopOf="@id/btnSeekBar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnBannerView" />
+
+        <Button
+            android:id="@+id/btnSeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="关卡进度 Demo"
+            app:layout_constraintBottom_toTopOf="@id/btnButton"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnDashBoard" />
+
+        <Button
+            android:id="@+id/btnButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="气泡按钮 Demo"
+            app:layout_constraintBottom_toTopOf="@id/cleanButton"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnSeekBar" />
+
+        <Button
+            android:id="@+id/cleanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="360 Demo"
+            app:layout_constraintBottom_toTopOf="@id/qqBubble"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnButton" />
+
+        <Button
+            android:id="@+id/qqBubble"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="QQ气泡 Demo"
+            app:layout_constraintBottom_toTopOf="@id/networkButton"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cleanButton" />
+
+        <Button
+            android:id="@+id/networkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="网络 Demo"
+            app:layout_constraintBottom_toTopOf="@id/roadWheelButton"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/qqBubble" />
+
+        <Button
+            android:id="@+id/roadWheelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="火车路 Demo"
+            app:layout_constraintBottom_toTopOf="@id/qqZoomHead"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/networkButton" />
+
+        <Button
+            android:id="@+id/qqZoomHead"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="qqZoomHead Demo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/roadWheelButton" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v4.widget.NestedScrollView>
