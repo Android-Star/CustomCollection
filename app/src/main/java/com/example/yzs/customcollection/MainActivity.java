@@ -1,21 +1,21 @@
 package com.example.yzs.customcollection;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import com.example.yzs.customcollection.showActivity.BannerViewActivity;
+
 import com.example.yzs.customcollection.showActivity.ButtonActivity;
 import com.example.yzs.customcollection.showActivity.Clean360Activity;
 import com.example.yzs.customcollection.showActivity.ClockActivity;
 import com.example.yzs.customcollection.showActivity.DashBoardActivity;
-import com.example.yzs.customcollection.showActivity.NetWorkActivity;
 import com.example.yzs.customcollection.showActivity.ProgressActivity;
 import com.example.yzs.customcollection.showActivity.QQBezierActivity;
-import com.example.yzs.customcollection.showActivity.RoadWheelActivity;
+import com.example.yzs.customcollection.showActivity.QQZoomActivity;
 import com.example.yzs.customcollection.showActivity.ScanActivity;
 import com.example.yzs.customcollection.showActivity.SeekBarActivity;
+import com.example.yzs.customcollection.showActivity.WaveViewActivity;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
   private Button qqBubble;
   private Button networkButton;
   private Button roadWheelButton;
+    private Button qqZoomHead;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     qqBubble.setOnClickListener(this);
     networkButton.setOnClickListener(this);
     roadWheelButton.setOnClickListener(this);
+      qqZoomHead.setOnClickListener(this);
   }
 
   private void initViews() {
@@ -64,6 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     qqBubble = findViewById(R.id.qqBubble);
     networkButton = findViewById(R.id.networkButton);
     roadWheelButton = findViewById(R.id.roadWheelButton);
+      qqZoomHead = findViewById(R.id.qqZoomHead);
   }
 
   @Override public void onClick(View v) {
@@ -101,6 +104,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
       case R.id.roadWheelButton:
         startActivity(new Intent(this, RoadWheelActivity.class));
         break;
+        case R.id.qqZoomHead:
+            startActivity(new Intent(this, QQZoomActivity.class));
+            break;
       default:
         break;
     }
