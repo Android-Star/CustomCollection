@@ -39,6 +39,7 @@
     <activity android:name=".network.volley.VolleyJsonActivity"/>
     <activity android:name=".network.volley.VolleyStringActivity"/>
     <activity android:name=".showActivity.RoadWheelActivity"/>
+    <activity android:name=".showActivity.ChinaMapActivity"/>
       <activity
           android:name=".showActivity.QQZoomActivity"
           android:theme="@style/Theme.AppCompat.Light.NoActionBar" />

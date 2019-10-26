@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import com.example.yzs.customcollection.showActivity.BannerViewActivity;
 import com.example.yzs.customcollection.showActivity.ButtonActivity;
+import com.example.yzs.customcollection.showActivity.ChinaMapActivity;
 import com.example.yzs.customcollection.showActivity.Clean360Activity;
 import com.example.yzs.customcollection.showActivity.ClockActivity;
 import com.example.yzs.customcollection.showActivity.DashBoardActivity;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button networkButton;
     private Button roadWheelButton;
     private Button qqZoomHead;
+    private Button chinaMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         networkButton.setOnClickListener(this);
         roadWheelButton.setOnClickListener(this);
         qqZoomHead.setOnClickListener(this);
+        chinaMap.setOnClickListener(this);
     }
 
     private void initViews() {
@@ -70,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         networkButton = findViewById(R.id.networkButton);
         roadWheelButton = findViewById(R.id.roadWheelButton);
         qqZoomHead = findViewById(R.id.qqZoomHead);
+        chinaMap = findViewById(R.id.chinaMap);
     }
 
     @Override
@@ -110,6 +114,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.qqZoomHead:
                 startActivity(new Intent(this, QQZoomActivity.class));
+                break;
+                case R.id.chinaMap:
+                startActivity(new Intent(this, ChinaMapActivity.class));
                 break;
             default:
                 break;
