@@ -3,7 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.example.yzs.customcollection.views.chinaMap.ChinaMap
+    <LinearLayout
+        android:id="@+id/llBtn"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:id="@+id/btnChineInner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="中国内陆" />
+
+        <Button
+            android:id="@+id/btnChinaTaiWan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="中国台湾" />
+    </LinearLayout>
+
+    <com.example.yzs.customcollection.views.chinaMap.ChinaMap
+        android:id="@+id/chinaMap"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/llBtn" />
 </RelativeLayout>

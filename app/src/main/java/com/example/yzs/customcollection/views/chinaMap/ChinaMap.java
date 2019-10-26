@@ -39,6 +39,7 @@ public class ChinaMap extends View {
     private ProvinceItem selectProvice;
     private float scale = 1.0f;
     private RectF pathRectF;
+    private int resId;
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
@@ -50,45 +51,14 @@ public class ChinaMap extends View {
         }
     };
 
-    private Thread thread = new Thread() {
-        @Override
-        public void run() {
-            super.run();
-            try {
-                List<ProvinceItem> list = new ArrayList<>();
-                DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-                DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
-                Document parse = documentBuilder.parse(getResources().openRawResource(R.raw.china2));
-                Element documentElement = parse.getDocumentElement();
-                NodeList nodeList = documentElement.getElementsByTagName("path");
-                int left = 0, top = 0, right = 0, bottom = 0;
-                for (int i = 0; i < nodeList.getLength(); i++) {
-                    Element item = (Element) nodeList.item(i);
-                    String pathData = item.getAttribute("d");
-                    String title = item.getAttribute("title");
-                    @SuppressLint("RestrictedApi")
-                    Path path = PathParser.createPathFromPathData(pathData);
-                    ProvinceItem provinceItem = new ProvinceItem(path);
-                    provinceItem.setDrawColor(Color.parseColor(getRandColorCode()));
-                    provinceItem.setTitle(title);
-                    list.add(provinceItem);
-                    RectF currentRectF = new RectF();
-                    path.computeBounds(currentRectF, true);
-                    left = (int) Math.min(left, currentRectF.left);
-                    top = (int) Math.min(top, currentRectF.top);
-                    right = (int) Math.max(right, currentRectF.right);
-                    bottom = (int) Math.max(bottom, currentRectF.bottom);
-                    pathRectF = new RectF(left, top, right, bottom);
-                }
-                provinceItems = list;
-                handler.sendEmptyMessage(0);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
+    public void setResId(int resId) {
+        if (this.resId == resId) {
+            return;
         }
-    };
+        this.resId = resId;
+        LoadThread thread = new LoadThread();
+        thread.start();
+    }
 
     public ChinaMap(Context context) {
         this(context, null);
@@ -104,7 +74,9 @@ public class ChinaMap extends View {
     }
 
     private void init() {
+        this.resId = R.raw.china;
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        LoadThread thread = new LoadThread();
         thread.start();
     }
 
@@ -148,7 +120,7 @@ public class ChinaMap extends View {
         for (ProvinceItem item : provinceItems) {
             if (item.isTouch(x, y)) {
                 selectProvice = item;
-                Toast.makeText(getContext(),item.getTitle(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), item.getTitle(), Toast.LENGTH_SHORT).show();
                 break;
             }
         }
@@ -170,5 +142,46 @@ public class ChinaMap extends View {
         b = b.length() == 1 ? "0" + b : b;
 
         return "#" + r + g + b;
+    }
+
+    class LoadThread extends Thread {
+        @Override
+        public void run() {
+
+            super.run();
+            try {
+                List<ProvinceItem> list = new ArrayList<>();
+                DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
+                Document parse = documentBuilder.parse(getResources().openRawResource(resId));
+                Element documentElement = parse.getDocumentElement();
+                NodeList nodeList = documentElement.getElementsByTagName("path");
+                int left = 0, top = 0, right = 0, bottom = 0;
+                for (int i = 0; i < nodeList.getLength(); i++) {
+                    Element item = (Element) nodeList.item(i);
+                    String pathData = item.getAttribute("d");
+                    String title = item.getAttribute("title");
+                    @SuppressLint("RestrictedApi")
+                    Path path = PathParser.createPathFromPathData(pathData);
+                    ProvinceItem provinceItem = new ProvinceItem(path);
+                    provinceItem.setDrawColor(Color.parseColor(getRandColorCode()));
+                    provinceItem.setTitle(title);
+                    list.add(provinceItem);
+                    RectF currentRectF = new RectF();
+                    path.computeBounds(currentRectF, true);
+                    left = (int) Math.min(left, currentRectF.left);
+                    top = (int) Math.min(top, currentRectF.top);
+                    right = (int) Math.max(right, currentRectF.right);
+                    bottom = (int) Math.max(bottom, currentRectF.bottom);
+                    pathRectF = new RectF(left, top, right, bottom);
+                }
+                provinceItems = list;
+                handler.sendEmptyMessage(0);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+
+        }
     }
 }
