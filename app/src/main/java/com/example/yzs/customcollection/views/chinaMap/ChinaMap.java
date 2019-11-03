@@ -1,5 +1,7 @@
 package com.example.yzs.customcollection.views.chinaMap;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -40,18 +42,36 @@ public class ChinaMap extends View {
     private float scale = 1.0f;
     private RectF pathRectF;
     private int resId;
+    private boolean withColor;
+    private float percent;
+
+    private ValueAnimator animation;
 
     private Handler handler = new Handler(Looper.getMainLooper()) {
         @Override
         public void handleMessage(Message msg) {
             if (provinceItems != null) {
-                postInvalidate();
+                if(withColor){
+                    postInvalidate();
+                }else{
+                    animation.start();
+                }
             }
 
         }
     };
 
-    public void setResId(int resId) {
+    public void setWithColor(boolean withColor) {
+        this.withColor = withColor;
+        if(withColor){
+            postInvalidate();
+        }else{
+            animation.start();
+        }
+    }
+
+    public void setResId(int resId,boolean withColor) {
+        this.withColor=withColor;
         if (this.resId == resId) {
             return;
         }
@@ -74,6 +94,15 @@ public class ChinaMap extends View {
     }
 
     private void init() {
+        animation=ValueAnimator.ofFloat(0,1);
+        animation.setDuration(2000);
+        animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                percent= (float) animation.getAnimatedValue();
+                postInvalidate();
+            }
+        });
         this.resId = R.raw.china;
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         LoadThread thread = new LoadThread();
@@ -87,7 +116,7 @@ public class ChinaMap extends View {
         canvas.scale(scale, scale);
         if (provinceItems != null) {
             for (ProvinceItem provinceItem : provinceItems) {
-                provinceItem.drawItem(canvas, paint, provinceItem == selectProvice);
+                provinceItem.drawItem(canvas, paint, provinceItem == selectProvice,withColor,percent);
             }
         }
     }

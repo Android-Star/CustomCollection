@@ -10,7 +10,7 @@ import com.example.yzs.customcollection.R;
 import com.example.yzs.customcollection.views.chinaMap.ChinaMap;
 
 public class ChinaMapActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button btnChineInner, btnChinaTaiWan;
+    private Button btnChineInner, btnChineInnerAnim, btnChinaTaiWan;
     private ChinaMap chinaMap;
 
     @Override
@@ -18,10 +18,12 @@ public class ChinaMapActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chinamap);
         btnChineInner = findViewById(R.id.btnChineInner);
+        btnChineInnerAnim = findViewById(R.id.btnChineInnerAnim);
         btnChinaTaiWan = findViewById(R.id.btnChinaTaiWan);
         chinaMap = findViewById(R.id.chinaMap);
 
         btnChineInner.setOnClickListener(this);
+        btnChineInnerAnim.setOnClickListener(this);
         btnChinaTaiWan.setOnClickListener(this);
     }
 
@@ -29,10 +31,13 @@ public class ChinaMapActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btnChineInner:
-                chinaMap.setResId(R.raw.china);
+                chinaMap.setResId(R.raw.china, true);
+                break;
+            case R.id.btnChineInnerAnim:
+                chinaMap.setWithColor(false);
                 break;
             case R.id.btnChinaTaiWan:
-                chinaMap.setResId(R.raw.taiwan);
+                chinaMap.setResId(R.raw.taiwan, true);
                 break;
             default:
                 break;
